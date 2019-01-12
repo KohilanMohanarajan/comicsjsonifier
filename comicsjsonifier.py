@@ -145,8 +145,8 @@ for item in marvelTitles:
 weeksTitles["MARVEL COMICS"] = itemcomps
 
 # Open json file to store data for writing
-open('comicsweek_' + month + '_' + day + '_' + year + '.json', 'w').close()
-outfile = open('comicsweek_' + month + '_' + day + '_' + year + '.json', 'w')
+open('comicsweek_thisWeek.json', 'w').close()
+outfile = open('comicsweek_thisWeek.json', 'w')
 
 # Dump dictionary into JSON file
 json.dump(weeksTitles, outfile)
