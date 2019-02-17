@@ -31,7 +31,7 @@ nextYear = str(next_date.year)
 
 
 urls = ['https://www.previewsworld.com/NewReleases/Export?format=txt&releaseDate=' + month + '/' + day + '/' + year, 
-		'https://www.previewsworld.com/NewReleases/Export?format=txt&releaseDate=' + nextMonth + '/' + nextDay + '/' + nextYear]
+		'https://www.previewsworld.com/shipping/releasestwoweeks.txt']
 
 files = ['weekscomics.txt', 'nextweekscomics.txt']
 
@@ -71,7 +71,9 @@ for i in range(0, len(urls)):
 		if (line == "DC COMICS"):
 			readDC = True
 			readDark = False
-		if (line == "DYNAMITE"):
+		if (line == "DC COMICS/DC COLLECTIBLES"):
+			readDC = False
+		if (line == "DYNAMITE" or line == "DYNAMITE ENTERTAINMENT"):
 			readDynamite = True
 			readDC = False
 		if (line == "IDW PUBLISHING"):
