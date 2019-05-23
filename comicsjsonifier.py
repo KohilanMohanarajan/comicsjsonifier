@@ -43,6 +43,7 @@ for i in range(0, len(urls)):
 	open(files[i], 'wb').write(r.content)
 
 	f = open(files[i], 'r')
+	print("Reading " + files[i] + "...")
 
 	readBoom = False
 	boomTitles = []
@@ -73,6 +74,8 @@ for i in range(0, len(urls)):
 			readDark = False
 		if (line == "DC COMICS/DC COLLECTIBLES"):
 			readDC = False
+		if (line == "DC COLLECTIBLES"):
+			readDC = False
 		if (line == "DYNAMITE" or line == "DYNAMITE ENTERTAINMENT"):
 			readDynamite = True
 			readDC = False
@@ -85,6 +88,8 @@ for i in range(0, len(urls)):
 		if (line == "MARVEL COMICS"):
 			readMarvel = True
 			readImage = False
+		if (line == "DIAMOND SELECT TOYS LLC"):
+			readMarvel = False
 		if (line == "COMICS & GRAPHIC NOVELS"):
 			readMarvel = False
 
@@ -103,16 +108,16 @@ for i in range(0, len(urls)):
 		if (readMarvel == True and line != ""):
 			marvelTitles.append(line)
 
-
-	del boomTitles[0]
-	itemcomps = {}
-	for item in boomTitles:
-		titlecomps = {}
-		comps = item.split("\t")
-		titlecomps["price"] = comps[2]
-		titlecomps["title"] = comps[1]
-		itemcomps[comps[0]] = titlecomps
-	weeksTitles["BOOM! STUDIOS"] = itemcomps
+	if (len(boomTitles) > 0):
+		del boomTitles[0]
+		itemcomps = {}
+		for item in boomTitles:
+			titlecomps = {}
+			comps = item.split("\t")
+			titlecomps["price"] = comps[2]
+			titlecomps["title"] = comps[1]
+			itemcomps[comps[0]] = titlecomps
+		weeksTitles["BOOM! STUDIOS"] = itemcomps
 
 	del darkTitles[0]
 	itemcomps = {}
